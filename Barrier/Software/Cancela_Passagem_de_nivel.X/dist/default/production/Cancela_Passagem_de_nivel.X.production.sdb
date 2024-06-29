@@ -1,0 +1,109 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F877A ]
+[d frameptr 0 ]
+"28 C:\Users\stefano/Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_Passagem de nivel.c
+[v _TremChegando TremChegando `II(v  1 e 1 0 ]
+"86
+[v _desligaMotores desligaMotores `(v  1 e 1 0 ]
+"94
+[v _main main `(v  1 e 1 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c90\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"25 C:\Users\stefano/Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_Passagem de nivel.c
+[v _flag flag `i  1 e 2 0 ]
+"26
+[v _aux aux `i  1 e 2 0 ]
+"217 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f877a.h
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+[s S55 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"234
+[u S64 . 1 `S55 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES64  1 e 1 @6 ]
+"279
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+[s S76 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+"296
+[u S85 . 1 `S76 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES85  1 e 1 @7 ]
+"341
+[v _PORTD PORTD `VEuc  1 e 1 @8 ]
+[s S103 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+"358
+[u S112 . 1 `S103 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES112  1 e 1 @8 ]
+[s S23 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INTF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INTE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"478
+[s S32 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 T0IE 1 0 :1:5 
+]
+[u S37 . 1 `S23 1 . 1 0 `S32 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES37  1 e 1 @11 ]
+"1256
+[v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
+"1376
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"1438
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"1500
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+"2610
+[v _INTF INTF `VEb  1 e 0 @89 ]
+"94 C:\Users\stefano/Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_Passagem de nivel.c
+[v _main main `(v  1 e 1 0 ]
+{
+"144
+} 0
+"86
+[v _desligaMotores desligaMotores `(v  1 e 1 0 ]
+{
+"92
+} 0
+"28
+[v _TremChegando TremChegando `II(v  1 e 1 0 ]
+{
+"36
+[v TremChegando@i i `i  1 a 2 6 ]
+"84
+} 0

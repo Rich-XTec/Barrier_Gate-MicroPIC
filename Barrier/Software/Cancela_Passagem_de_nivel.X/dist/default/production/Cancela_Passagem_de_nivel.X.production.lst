@@ -1,0 +1,1272 @@
+
+
+Microchip MPLAB XC8 Assembler V2.36 build 20220127204148 
+                                                                                               Sat Jul 09 13:44:08 2022
+
+Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1 
+     1                           	processor	16F877A
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	nvCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     7                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,noexec
+     8                           	psect	maintext,global,class=CODE,split=1,delta=2
+     9                           	psect	text1,local,class=CODE,merge=1,delta=2
+    10                           	psect	text2,local,class=CODE,merge=1,delta=2
+    11                           	psect	intentry,global,class=CODE,delta=2
+    12                           	psect	idloc,global,abs,ovrld,class=IDLOC,space=5,delta=2,noexec
+    13                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    14                           	dabs	1,0x7E,2
+    15  0000                     
+    16                           ; Version 2.40
+    17                           ; Generated 17/11/2021 GMT
+    18                           ; 
+    19                           ; Copyright © 2021, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    20                           ; All rights reserved.
+    21                           ; 
+    22                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    23                           ; 
+    24                           ; Redistribution and use in source and binary forms, with or without modification, are
+    25                           ; permitted provided that the following conditions are met:
+    26                           ; 
+    27                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    28                           ;        conditions and the following disclaimer.
+    29                           ; 
+    30                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    31                           ;        of conditions and the following disclaimer in the documentation and/or other
+    32                           ;        materials provided with the distribution. Publication is not required when
+    33                           ;        this file is used in an embedded application.
+    34                           ; 
+    35                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    36                           ;        software without specific prior written permission.
+    37                           ; 
+    38                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    39                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    40                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    41                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    42                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    43                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    44                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    45                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    46                           ; 
+    47                           ; 
+    48                           ; Code-generator required, PIC16F877A Definitions
+    49                           ; 
+    50                           ; SFR Addresses
+    51  0000                     	;# 
+    52  0001                     	;# 
+    53  0002                     	;# 
+    54  0003                     	;# 
+    55  0004                     	;# 
+    56  0005                     	;# 
+    57  0006                     	;# 
+    58  0007                     	;# 
+    59  0008                     	;# 
+    60  0009                     	;# 
+    61  000A                     	;# 
+    62  000B                     	;# 
+    63  000C                     	;# 
+    64  000D                     	;# 
+    65  000E                     	;# 
+    66  000E                     	;# 
+    67  000F                     	;# 
+    68  0010                     	;# 
+    69  0011                     	;# 
+    70  0012                     	;# 
+    71  0013                     	;# 
+    72  0014                     	;# 
+    73  0015                     	;# 
+    74  0015                     	;# 
+    75  0016                     	;# 
+    76  0017                     	;# 
+    77  0018                     	;# 
+    78  0019                     	;# 
+    79  001A                     	;# 
+    80  001B                     	;# 
+    81  001B                     	;# 
+    82  001C                     	;# 
+    83  001D                     	;# 
+    84  001E                     	;# 
+    85  001F                     	;# 
+    86  0081                     	;# 
+    87  0085                     	;# 
+    88  0086                     	;# 
+    89  0087                     	;# 
+    90  0088                     	;# 
+    91  0089                     	;# 
+    92  008C                     	;# 
+    93  008D                     	;# 
+    94  008E                     	;# 
+    95  0091                     	;# 
+    96  0092                     	;# 
+    97  0093                     	;# 
+    98  0094                     	;# 
+    99  0098                     	;# 
+   100  0099                     	;# 
+   101  009C                     	;# 
+   102  009D                     	;# 
+   103  009E                     	;# 
+   104  009F                     	;# 
+   105  010C                     	;# 
+   106  010D                     	;# 
+   107  010E                     	;# 
+   108  010F                     	;# 
+   109  018C                     	;# 
+   110  018D                     	;# 
+   111  0000                     	;# 
+   112  0001                     	;# 
+   113  0002                     	;# 
+   114  0003                     	;# 
+   115  0004                     	;# 
+   116  0005                     	;# 
+   117  0006                     	;# 
+   118  0007                     	;# 
+   119  0008                     	;# 
+   120  0009                     	;# 
+   121  000A                     	;# 
+   122  000B                     	;# 
+   123  000C                     	;# 
+   124  000D                     	;# 
+   125  000E                     	;# 
+   126  000E                     	;# 
+   127  000F                     	;# 
+   128  0010                     	;# 
+   129  0011                     	;# 
+   130  0012                     	;# 
+   131  0013                     	;# 
+   132  0014                     	;# 
+   133  0015                     	;# 
+   134  0015                     	;# 
+   135  0016                     	;# 
+   136  0017                     	;# 
+   137  0018                     	;# 
+   138  0019                     	;# 
+   139  001A                     	;# 
+   140  001B                     	;# 
+   141  001B                     	;# 
+   142  001C                     	;# 
+   143  001D                     	;# 
+   144  001E                     	;# 
+   145  001F                     	;# 
+   146  0081                     	;# 
+   147  0085                     	;# 
+   148  0086                     	;# 
+   149  0087                     	;# 
+   150  0088                     	;# 
+   151  0089                     	;# 
+   152  008C                     	;# 
+   153  008D                     	;# 
+   154  008E                     	;# 
+   155  0091                     	;# 
+   156  0092                     	;# 
+   157  0093                     	;# 
+   158  0094                     	;# 
+   159  0098                     	;# 
+   160  0099                     	;# 
+   161  009C                     	;# 
+   162  009D                     	;# 
+   163  009E                     	;# 
+   164  009F                     	;# 
+   165  010C                     	;# 
+   166  010D                     	;# 
+   167  010E                     	;# 
+   168  010F                     	;# 
+   169  018C                     	;# 
+   170  018D                     	;# 
+   171                           
+   172                           	psect	nvCOMMON
+   173  0078                     __pnvCOMMON:
+   174  0078                     _aux:
+   175  0078                     	ds	2
+   176  007A                     _flag:
+   177  007A                     	ds	2
+   178  0008                     _PORTD	set	8
+   179  0007                     _PORTC	set	7
+   180  0006                     _PORTB	set	6
+   181  0008                     _PORTDbits	set	8
+   182  0007                     _PORTCbits	set	7
+   183  0006                     _PORTBbits	set	6
+   184  000B                     _INTCONbits	set	11
+   185  0059                     _INTF	set	89
+   186  0088                     _TRISD	set	136
+   187  0087                     _TRISC	set	135
+   188  0086                     _TRISB	set	134
+   189  0081                     _OPTION_REG	set	129
+   190                           
+   191                           	psect	cinit
+   192  0011                     start_initialization:	
+   193                           ; #config settings
+   194                           
+   195  0011                     __initialization:
+   196  0011                     end_of_initialization:	
+   197                           ;End of C runtime variable initialization code
+   198                           
+   199  0011                     __end_of__initialization:
+   200  0011  0183               	clrf	3
+   201  0012  120A  118A  28C0   	ljmp	_main	;jump to C main() function
+   202                           
+   203                           	psect	cstackCOMMON
+   204  0070                     __pcstackCOMMON:
+   205  0070                     ?_TremChegando:
+   206  0070                     ??_TremChegando:	
+   207                           ; 1 bytes @ 0x0
+   208                           
+   209  0070                     ?_desligaMotores:	
+   210                           ; 1 bytes @ 0x0
+   211                           
+   212  0070                     ?_main:	
+   213                           ; 1 bytes @ 0x0
+   214                           
+   215                           
+   216                           ; 1 bytes @ 0x0
+   217  0070                     	ds	6
+   218  0076                     TremChegando@i:
+   219                           
+   220                           ; 2 bytes @ 0x6
+   221  0076                     	ds	2
+   222                           
+   223                           	psect	cstackBANK0
+   224  0020                     __pcstackBANK0:
+   225  0020                     ??_desligaMotores:
+   226  0020                     ??_main:	
+   227                           ; 1 bytes @ 0x0
+   228                           
+   229                           
+   230                           ; 1 bytes @ 0x0
+   231  0020                     	ds	3
+   232                           
+   233                           	psect	maintext
+   234  00C0                     __pmaintext:	
+   235 ;;
+   236 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   237 ;;
+   238 ;; *************** function _main *****************
+   239 ;; Defined at:
+   240 ;;		line 94 in file "../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_P
+      +assagem de nivel.c"
+   241 ;; Parameters:    Size  Location     Type
+   242 ;;		None
+   243 ;; Auto vars:     Size  Location     Type
+   244 ;;		None
+   245 ;; Return value:  Size  Location     Type
+   246 ;;                  1    wreg      void 
+   247 ;; Registers used:
+   248 ;;		wreg, status,2, status,0, pclath, cstack
+   249 ;; Tracked objects:
+   250 ;;		On entry : B00/0
+   251 ;;		On exit  : 0/0
+   252 ;;		Unchanged: 0/0
+   253 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   254 ;;      Params:         0       0       0       0       0
+   255 ;;      Locals:         0       0       0       0       0
+   256 ;;      Temps:          0       3       0       0       0
+   257 ;;      Totals:         0       3       0       0       0
+   258 ;;Total ram usage:        3 bytes
+   259 ;; Hardware stack levels required when called: 2
+   260 ;; This function calls:
+   261 ;;		_desligaMotores
+   262 ;; This function is called by:
+   263 ;;		Startup code after reset
+   264 ;; This function uses a non-reentrant model
+   265 ;;
+   266                           
+   267  00C0                     _main:	
+   268                           ;psect for function _main
+   269                           
+   270  00C0                     l775:	
+   271                           ;incstack = 0
+   272                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   273                           
+   274                           
+   275                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 96:     OPTION_REG = 0b00111111;
+   276  00C0  303F               	movlw	63
+   277  00C1  1683               	bsf	3,5	;RP0=1, select bank1
+   278  00C2  1303               	bcf	3,6	;RP1=0, select bank1
+   279  00C3  0081               	movwf	1	;volatile
+   280  00C4                     l777:
+   281                           
+   282                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 99:     INTCONbits.GIE = 1;
+   283  00C4  178B               	bsf	11,7	;volatile
+   284  00C5                     l779:
+   285                           
+   286                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 100:     INTCONbits.INTE = 1;
+   287  00C5  160B               	bsf	11,4	;volatile
+   288                           
+   289                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 103:     TRISB = 255;
+   290  00C6  30FF               	movlw	255
+   291  00C7  0086               	movwf	6	;volatile
+   292  00C8                     l781:
+   293                           
+   294                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 104:     TRISC = 0;
+   295  00C8  0187               	clrf	7	;volatile
+   296  00C9                     l783:
+   297                           
+   298                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 105:     TRISD = 0;
+   299  00C9  0188               	clrf	8	;volatile
+   300  00CA                     l785:
+   301                           
+   302                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 107:     PORTB = 0;
+   303  00CA  1283               	bcf	3,5	;RP0=0, select bank0
+   304  00CB  1303               	bcf	3,6	;RP1=0, select bank0
+   305  00CC  0186               	clrf	6	;volatile
+   306  00CD                     l787:
+   307                           
+   308                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 108:     PORTC = 0;
+   309  00CD  0187               	clrf	7	;volatile
+   310  00CE                     l789:
+   311                           
+   312                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 109:     PORTD = 0;
+   313  00CE  0188               	clrf	8	;volatile
+   314  00CF                     l791:
+   315                           
+   316                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 113:         flag = 0;
+   317  00CF  01FA               	clrf	_flag
+   318  00D0  01FB               	clrf	_flag+1
+   319  00D1                     l793:
+   320                           
+   321                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 114:         aux = 0;
+   322  00D1  01F8               	clrf	_aux
+   323  00D2  01F9               	clrf	_aux+1
+   324  00D3                     l795:
+   325                           
+   326                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 116:         desligaMotores();
+   327  00D3  120A  118A  2162  120A  118A  	fcall	_desligaMotores
+   328  00D8                     l797:
+   329                           
+   330                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 117:         PORTCbits.RC0 = 0;
+   331  00D8  1283               	bcf	3,5	;RP0=0, select bank0
+   332  00D9  1303               	bcf	3,6	;RP1=0, select bank0
+   333  00DA  1007               	bcf	7,0	;volatile
+   334                           
+   335                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 119:         while(aux != 3 && flag == 0){
+   336  00DB  2951               	goto	l837
+   337  00DC                     l799:
+   338                           
+   339                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 120:             if(aux == 0 && PORTBbits.RB1 == 0){
+   340  00DC  0878               	movf	_aux,w
+   341  00DD  0479               	iorwf	_aux+1,w
+   342  00DE  1D03               	btfss	3,2
+   343  00DF  28E1               	goto	u191
+   344  00E0  28E2               	goto	u190
+   345  00E1                     u191:
+   346  00E1  28F0               	goto	l807
+   347  00E2                     u190:
+   348  00E2                     l801:
+   349  00E2  1283               	bcf	3,5	;RP0=0, select bank0
+   350  00E3  1303               	bcf	3,6	;RP1=0, select bank0
+   351  00E4  1886               	btfsc	6,1	;volatile
+   352  00E5  28E7               	goto	u201
+   353  00E6  28E8               	goto	u200
+   354  00E7                     u201:
+   355  00E7  28F0               	goto	l807
+   356  00E8                     u200:
+   357  00E8                     l803:
+   358                           
+   359                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 121:                 PORTDbits.RD3 = 0;
+   360  00E8  1188               	bcf	8,3	;volatile
+   361                           
+   362                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 122:       PORTCbits.RC6 = 0;
+   363  00E9  1307               	bcf	7,6	;volatile
+   364                           
+   365                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 123:       PORTDbits.RD1 = 1;
+   366  00EA  1488               	bsf	8,1	;volatile
+   367                           
+   368                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 124:       PORTCbits.RC4 = 1;
+   369  00EB  1607               	bsf	7,4	;volatile
+   370  00EC                     l805:
+   371                           
+   372                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 125:                 aux = 1;
+   373  00EC  3001               	movlw	1
+   374  00ED  00F8               	movwf	_aux
+   375  00EE  3000               	movlw	0
+   376  00EF  00F9               	movwf	_aux+1
+   377  00F0                     l807:
+   378                           
+   379                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 127:             if(aux == 1 && PORTBbits.RB3 == 0 & POR
+      +                          TBbits.RB2 == 1)
+   380  00F0  0378               	decf	_aux,w
+   381  00F1  0479               	iorwf	_aux+1,w
+   382  00F2  1D03               	btfss	3,2
+   383  00F3  28F5               	goto	u211
+   384  00F4  28F6               	goto	u210
+   385  00F5                     u211:
+   386  00F5  2929               	goto	l825
+   387  00F6                     u210:
+   388  00F6                     l809:
+   389  00F6  1283               	bcf	3,5	;RP0=0, select bank0
+   390  00F7  1303               	bcf	3,6	;RP1=0, select bank0
+   391  00F8  1906               	btfsc	6,2	;volatile
+   392  00F9  28FB               	goto	u221
+   393  00FA  28FD               	goto	u220
+   394  00FB                     u221:
+   395  00FB  3001               	movlw	1
+   396  00FC  28FE               	goto	u222
+   397  00FD                     u220:
+   398  00FD  3000               	movlw	0
+   399  00FE                     u222:
+   400  00FE  00A0               	movwf	??_main
+   401  00FF  1D86               	btfss	6,3	;volatile
+   402  0100  2902               	goto	u231
+   403  0101  2904               	goto	u230
+   404  0102                     u231:
+   405  0102  3001               	movlw	1
+   406  0103  2905               	goto	u232
+   407  0104                     u230:
+   408  0104  3000               	movlw	0
+   409  0105                     u232:
+   410  0105  0520               	andwf	??_main,w
+   411  0106  3800               	iorlw	0
+   412  0107  1903               	skipnz
+   413  0108  290A               	goto	u241
+   414  0109  290B               	goto	u240
+   415  010A                     u241:
+   416  010A  2929               	goto	l825
+   417  010B                     u240:
+   418  010B                     l811:
+   419                           
+   420                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 128:             {;../../Desktop/Micro-Github/Cancela/So
+      +                          ftware/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_Passagem de nivel.c: 129:  
+      +                                         desligaMotores();
+   421  010B  120A  118A  2162  120A  118A  	fcall	_desligaMotores
+   422  0110                     l813:
+   423                           
+   424                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 130:                 _delay((unsigned long)((20000)*(400
+      +                          0000/4000.0)));
+   425  0110  3066               	movlw	102
+   426  0111  1283               	bcf	3,5	;RP0=0, select bank0
+   427  0112  1303               	bcf	3,6	;RP1=0, select bank0
+   428  0113  00A2               	movwf	??_main+2
+   429  0114  3076               	movlw	118
+   430  0115  00A1               	movwf	??_main+1
+   431  0116  30C0               	movlw	192
+   432  0117  00A0               	movwf	??_main
+   433  0118                     u307:
+   434  0118  0BA0               	decfsz	??_main,f
+   435  0119  2918               	goto	u307
+   436  011A  0BA1               	decfsz	??_main+1,f
+   437  011B  2918               	goto	u307
+   438  011C  0BA2               	decfsz	??_main+2,f
+   439  011D  2918               	goto	u307
+   440  011E  0000               	nop
+   441  011F                     l815:
+   442                           
+   443                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 131:                 PORTDbits.RD3 = 1;
+   444  011F  1283               	bcf	3,5	;RP0=0, select bank0
+   445  0120  1303               	bcf	3,6	;RP1=0, select bank0
+   446  0121  1588               	bsf	8,3	;volatile
+   447  0122                     l817:
+   448                           
+   449                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 132:       PORTCbits.RC6 = 1;
+   450  0122  1707               	bsf	7,6	;volatile
+   451  0123                     l819:
+   452                           
+   453                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 133:       PORTDbits.RD1 = 0;
+   454  0123  1088               	bcf	8,1	;volatile
+   455  0124                     l821:
+   456                           
+   457                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 134:       PORTCbits.RC4 = 0;
+   458  0124  1207               	bcf	7,4	;volatile
+   459  0125                     l823:
+   460                           
+   461                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 135:                 aux = 2;
+   462  0125  3002               	movlw	2
+   463  0126  00F8               	movwf	_aux
+   464  0127  3000               	movlw	0
+   465  0128  00F9               	movwf	_aux+1
+   466  0129                     l825:
+   467                           
+   468                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 137:             if(aux == 2 && PORTBbits.RB2 == 0 && PO
+      +                          RTBbits.RB3 == 1){
+   469  0129  3002               	movlw	2
+   470  012A  0678               	xorwf	_aux,w
+   471  012B  0479               	iorwf	_aux+1,w
+   472  012C  1D03               	btfss	3,2
+   473  012D  292F               	goto	u251
+   474  012E  2930               	goto	u250
+   475  012F                     u251:
+   476  012F  2951               	goto	l837
+   477  0130                     u250:
+   478  0130                     l827:
+   479  0130  1283               	bcf	3,5	;RP0=0, select bank0
+   480  0131  1303               	bcf	3,6	;RP1=0, select bank0
+   481  0132  1906               	btfsc	6,2	;volatile
+   482  0133  2935               	goto	u261
+   483  0134  2936               	goto	u260
+   484  0135                     u261:
+   485  0135  2951               	goto	l837
+   486  0136                     u260:
+   487  0136                     l829:
+   488  0136  1D86               	btfss	6,3	;volatile
+   489  0137  2939               	goto	u271
+   490  0138  293A               	goto	u270
+   491  0139                     u271:
+   492  0139  2951               	goto	l837
+   493  013A                     u270:
+   494  013A                     l831:
+   495                           
+   496                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 138:                 desligaMotores();
+   497  013A  120A  118A  2162  120A  118A  	fcall	_desligaMotores
+   498  013F                     l833:
+   499                           
+   500                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 139:                 _delay((unsigned long)((1000)*(4000
+      +                          000/4000.0)));
+   501  013F  3006               	movlw	6
+   502  0140  1283               	bcf	3,5	;RP0=0, select bank0
+   503  0141  1303               	bcf	3,6	;RP1=0, select bank0
+   504  0142  00A2               	movwf	??_main+2
+   505  0143  3013               	movlw	19
+   506  0144  00A1               	movwf	??_main+1
+   507  0145  30AD               	movlw	173
+   508  0146  00A0               	movwf	??_main
+   509  0147                     u317:
+   510  0147  0BA0               	decfsz	??_main,f
+   511  0148  2947               	goto	u317
+   512  0149  0BA1               	decfsz	??_main+1,f
+   513  014A  2947               	goto	u317
+   514  014B  0BA2               	decfsz	??_main+2,f
+   515  014C  2947               	goto	u317
+   516  014D                     l835:
+   517                           
+   518                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 140:                 aux = 3;
+   519  014D  3003               	movlw	3
+   520  014E  00F8               	movwf	_aux
+   521  014F  3000               	movlw	0
+   522  0150  00F9               	movwf	_aux+1
+   523  0151                     l837:
+   524                           
+   525                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 119:         while(aux != 3 && flag == 0){
+   526  0151  3003               	movlw	3
+   527  0152  0678               	xorwf	_aux,w
+   528  0153  0479               	iorwf	_aux+1,w
+   529  0154  1903               	btfsc	3,2
+   530  0155  2957               	goto	u281
+   531  0156  2958               	goto	u280
+   532  0157                     u281:
+   533  0157  28CF               	goto	l791
+   534  0158                     u280:
+   535  0158                     l839:
+   536  0158  087A               	movf	_flag,w
+   537  0159  047B               	iorwf	_flag+1,w
+   538  015A  1903               	btfsc	3,2
+   539  015B  295D               	goto	u291
+   540  015C  295E               	goto	u290
+   541  015D                     u291:
+   542  015D  28DC               	goto	l799
+   543  015E                     u290:
+   544  015E  28CF               	goto	l791
+   545  015F  120A  118A  280E   	ljmp	start
+   546  0162                     __end_of_main:
+   547                           
+   548                           	psect	text1
+   549  0162                     __ptext1:	
+   550 ;; *************** function _desligaMotores *****************
+   551 ;; Defined at:
+   552 ;;		line 86 in file "../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_P
+      +assagem de nivel.c"
+   553 ;; Parameters:    Size  Location     Type
+   554 ;;		None
+   555 ;; Auto vars:     Size  Location     Type
+   556 ;;		None
+   557 ;; Return value:  Size  Location     Type
+   558 ;;                  1    wreg      void 
+   559 ;; Registers used:
+   560 ;;		None
+   561 ;; Tracked objects:
+   562 ;;		On entry : 0/0
+   563 ;;		On exit  : 0/0
+   564 ;;		Unchanged: 0/0
+   565 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   566 ;;      Params:         0       0       0       0       0
+   567 ;;      Locals:         0       0       0       0       0
+   568 ;;      Temps:          0       0       0       0       0
+   569 ;;      Totals:         0       0       0       0       0
+   570 ;;Total ram usage:        0 bytes
+   571 ;; Hardware stack levels used: 1
+   572 ;; Hardware stack levels required when called: 1
+   573 ;; This function calls:
+   574 ;;		Nothing
+   575 ;; This function is called by:
+   576 ;;		_main
+   577 ;; This function uses a non-reentrant model
+   578 ;;
+   579                           
+   580  0162                     _desligaMotores:	
+   581                           ;psect for function _desligaMotores
+   582                           
+   583  0162                     l773:	
+   584                           ;incstack = 0
+   585                           ; Regs used in _desligaMotores: []
+   586                           
+   587                           
+   588                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 88:     PORTCbits.RC4 = 0;
+   589  0162  1283               	bcf	3,5	;RP0=0, select bank0
+   590  0163  1303               	bcf	3,6	;RP1=0, select bank0
+   591  0164  1207               	bcf	7,4	;volatile
+   592                           
+   593                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 89:     PORTCbits.RC6 = 0;
+   594  0165  1307               	bcf	7,6	;volatile
+   595                           
+   596                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 90:     PORTDbits.RD1 = 0;
+   597  0166  1088               	bcf	8,1	;volatile
+   598                           
+   599                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 91:     PORTDbits.RD3 = 0;
+   600  0167  1188               	bcf	8,3	;volatile
+   601  0168                     l51:
+   602  0168  0008               	return
+   603  0169                     __end_of_desligaMotores:
+   604                           
+   605                           	psect	text2
+   606  0015                     __ptext2:	
+   607 ;; *************** function _TremChegando *****************
+   608 ;; Defined at:
+   609 ;;		line 28 in file "../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_P
+      +assagem de nivel.c"
+   610 ;; Parameters:    Size  Location     Type
+   611 ;;		None
+   612 ;; Auto vars:     Size  Location     Type
+   613 ;;  i               2    6[COMMON] int 
+   614 ;; Return value:  Size  Location     Type
+   615 ;;                  1    wreg      void 
+   616 ;; Registers used:
+   617 ;;		wreg, status,2, btemp+1
+   618 ;; Tracked objects:
+   619 ;;		On entry : 0/0
+   620 ;;		On exit  : 0/0
+   621 ;;		Unchanged: 0/0
+   622 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   623 ;;      Params:         0       0       0       0       0
+   624 ;;      Locals:         2       0       0       0       0
+   625 ;;      Temps:          6       0       0       0       0
+   626 ;;      Totals:         8       0       0       0       0
+   627 ;;Total ram usage:        8 bytes
+   628 ;; Hardware stack levels used: 1
+   629 ;; This function calls:
+   630 ;;		Nothing
+   631 ;; This function is called by:
+   632 ;;		Interrupt level 1
+   633 ;; This function uses a non-reentrant model
+   634 ;;
+   635                           
+   636  0015                     _TremChegando:	
+   637                           ;psect for function _TremChegando
+   638                           
+   639  0015                     i1l661:
+   640                           
+   641                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 30:     if(INTF)
+   642  0015  1C8B               	btfss	11,1	;volatile
+   643  0016  2818               	goto	u1_21
+   644  0017  2819               	goto	u1_20
+   645  0018                     u1_21:
+   646  0018  28B7               	goto	i1l48
+   647  0019                     u1_20:
+   648  0019                     i1l663:
+   649                           
+   650                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 31:     {;../../Desktop/Micro-Github/Cancela/Software/Ex
+      +                          ercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_Passagem de nivel.c: 32:         INT
+      +                          CONbits.INTF = 0;
+   651  0019  108B               	bcf	11,1	;volatile
+   652                           
+   653                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 34:         if(PORTBbits.RB1 == 0 && PORTBbits.RB3 == 0)
+   654  001A  1283               	bcf	3,5	;RP0=0, select bank0
+   655  001B  1303               	bcf	3,6	;RP1=0, select bank0
+   656  001C  1886               	btfsc	6,1	;volatile
+   657  001D  281F               	goto	u2_21
+   658  001E  2820               	goto	u2_20
+   659  001F                     u2_21:
+   660  001F  28B2               	goto	i1l701
+   661  0020                     u2_20:
+   662  0020                     i1l665:
+   663  0020  1986               	btfsc	6,3	;volatile
+   664  0021  2823               	goto	u3_21
+   665  0022  2824               	goto	u3_20
+   666  0023                     u3_21:
+   667  0023  28B2               	goto	i1l701
+   668  0024                     u3_20:
+   669  0024                     i1l667:
+   670                           
+   671                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 35:         {;../../Desktop/Micro-Github/Cancela/Softwar
+      +                          e/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_Passagem de nivel.c: 36:        
+      +                               for(int i = 0; i < 5;i++)
+   672  0024  01F6               	clrf	TremChegando@i
+   673  0025  01F7               	clrf	TremChegando@i+1
+   674  0026                     i1l37:
+   675                           
+   676                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 37:             {;../../Desktop/Micro-Github/Cancela/Sof
+      +                          tware/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_Passagem de nivel.c: 38:    
+      +                                       PORTCbits.RC0 = 1;
+   677  0026  1283               	bcf	3,5	;RP0=0, select bank0
+   678  0027  1303               	bcf	3,6	;RP1=0, select bank0
+   679  0028  1407               	bsf	7,0	;volatile
+   680  0029                     i1l673:
+   681                           
+   682                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 39:                 _delay((unsigned long)((4000)*(40000
+      +                          00/4000.0)));
+   683  0029  3015               	movlw	21
+   684  002A  00F2               	movwf	??_TremChegando+2
+   685  002B  304B               	movlw	75
+   686  002C  00F1               	movwf	??_TremChegando+1
+   687  002D  30BE               	movlw	190
+   688  002E  00F0               	movwf	??_TremChegando
+   689  002F                     u32_27:
+   690  002F  0BF0               	decfsz	??_TremChegando,f
+   691  0030  282F               	goto	u32_27
+   692  0031  0BF1               	decfsz	??_TremChegando+1,f
+   693  0032  282F               	goto	u32_27
+   694  0033  0BF2               	decfsz	??_TremChegando+2,f
+   695  0034  282F               	goto	u32_27
+   696  0035  0000               	nop
+   697  0036                     i1l675:
+   698                           
+   699                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 40:                 PORTCbits.RC0 = 0;
+   700  0036  1283               	bcf	3,5	;RP0=0, select bank0
+   701  0037  1303               	bcf	3,6	;RP1=0, select bank0
+   702  0038  1007               	bcf	7,0	;volatile
+   703                           
+   704                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 41:                 _delay((unsigned long)((4000)*(40000
+      +                          00/4000.0)));
+   705  0039  3015               	movlw	21
+   706  003A  00F2               	movwf	??_TremChegando+2
+   707  003B  304B               	movlw	75
+   708  003C  00F1               	movwf	??_TremChegando+1
+   709  003D  30BE               	movlw	190
+   710  003E  00F0               	movwf	??_TremChegando
+   711  003F                     u33_27:
+   712  003F  0BF0               	decfsz	??_TremChegando,f
+   713  0040  283F               	goto	u33_27
+   714  0041  0BF1               	decfsz	??_TremChegando+1,f
+   715  0042  283F               	goto	u33_27
+   716  0043  0BF2               	decfsz	??_TremChegando+2,f
+   717  0044  283F               	goto	u33_27
+   718  0045  0000               	nop
+   719                           
+   720                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 42:             }
+   721  0046  3001               	movlw	1
+   722  0047  07F6               	addwf	TremChegando@i,f
+   723  0048  1803               	skipnc
+   724  0049  0AF7               	incf	TremChegando@i+1,f
+   725  004A  3000               	movlw	0
+   726  004B  07F7               	addwf	TremChegando@i+1,f
+   727  004C                     i1l677:
+   728  004C  0877               	movf	TremChegando@i+1,w
+   729  004D  3A80               	xorlw	128
+   730  004E  00FF               	movwf	btemp+1
+   731  004F  3080               	movlw	128
+   732  0050  027F               	subwf	btemp+1,w
+   733  0051  1D03               	skipz
+   734  0052  2855               	goto	u4_25
+   735  0053  3005               	movlw	5
+   736  0054  0276               	subwf	TremChegando@i,w
+   737  0055                     u4_25:
+   738  0055  1C03               	skipc
+   739  0056  2858               	goto	u4_21
+   740  0057  2859               	goto	u4_20
+   741  0058                     u4_21:
+   742  0058  2826               	goto	i1l37
+   743  0059                     u4_20:
+   744  0059  2883               	goto	i1l39
+   745  005A                     i1l40:
+   746                           
+   747                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 45:             {;../../Desktop/Micro-Github/Cancela/Sof
+      +                          tware/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_Passagem de nivel.c: 46:    
+      +                                       PORTCbits.RC0 = 1;
+   748  005A  1407               	bsf	7,0	;volatile
+   749  005B                     i1l679:
+   750                           
+   751                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 47:                 _delay((unsigned long)((500)*(400000
+      +                          0/4000.0)));
+   752  005B  3003               	movlw	3
+   753  005C  00F2               	movwf	??_TremChegando+2
+   754  005D  308A               	movlw	138
+   755  005E  00F1               	movwf	??_TremChegando+1
+   756  005F  3055               	movlw	85
+   757  0060  00F0               	movwf	??_TremChegando
+   758  0061                     u34_27:
+   759  0061  0BF0               	decfsz	??_TremChegando,f
+   760  0062  2861               	goto	u34_27
+   761  0063  0BF1               	decfsz	??_TremChegando+1,f
+   762  0064  2861               	goto	u34_27
+   763  0065  0BF2               	decfsz	??_TremChegando+2,f
+   764  0066  2861               	goto	u34_27
+   765  0067  2868               	nop2
+   766  0068                     i1l681:
+   767                           
+   768                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 48:                 PORTCbits.RC0 = 0;
+   769  0068  1283               	bcf	3,5	;RP0=0, select bank0
+   770  0069  1303               	bcf	3,6	;RP1=0, select bank0
+   771  006A  1007               	bcf	7,0	;volatile
+   772                           
+   773                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 49:                 _delay((unsigned long)((500)*(400000
+      +                          0/4000.0)));
+   774  006B  3003               	movlw	3
+   775  006C  00F2               	movwf	??_TremChegando+2
+   776  006D  308A               	movlw	138
+   777  006E  00F1               	movwf	??_TremChegando+1
+   778  006F  3055               	movlw	85
+   779  0070  00F0               	movwf	??_TremChegando
+   780  0071                     u35_27:
+   781  0071  0BF0               	decfsz	??_TremChegando,f
+   782  0072  2871               	goto	u35_27
+   783  0073  0BF1               	decfsz	??_TremChegando+1,f
+   784  0074  2871               	goto	u35_27
+   785  0075  0BF2               	decfsz	??_TremChegando+2,f
+   786  0076  2871               	goto	u35_27
+   787  0077  2878               	nop2
+   788  0078                     i1l683:
+   789                           
+   790                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 51:                 if(PORTBbits.RB2 != 0)
+   791  0078  1283               	bcf	3,5	;RP0=0, select bank0
+   792  0079  1303               	bcf	3,6	;RP1=0, select bank0
+   793  007A  1D06               	btfss	6,2	;volatile
+   794  007B  287D               	goto	u5_21
+   795  007C  287E               	goto	u5_20
+   796  007D                     u5_21:
+   797  007D  2881               	goto	i1l41
+   798  007E                     u5_20:
+   799  007E                     i1l685:
+   800                           
+   801                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 52:                 {;../../Desktop/Micro-Github/Cancela
+      +                          /Software/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_Passagem de nivel.c: 53:
+      +                                               PORTDbits.RD3 = 1;
+   802  007E  1588               	bsf	8,3	;volatile
+   803                           
+   804                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 54:                     PORTCbits.RC6 = 1;
+   805  007F  1707               	bsf	7,6	;volatile
+   806                           
+   807                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 55:                 }
+   808  0080  2883               	goto	i1l39
+   809  0081                     i1l41:	
+   810                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 56:                 else
+   811                           
+   812                           
+   813                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 57:                 {;../../Desktop/Micro-Github/Cancela
+      +                          /Software/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_Passagem de nivel.c: 58:
+      +                                               PORTDbits.RD3 = 0;
+   814  0081  1188               	bcf	8,3	;volatile
+   815                           
+   816                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 59:                     PORTCbits.RC6 = 0;
+   817  0082  1307               	bcf	7,6	;volatile
+   818  0083                     i1l39:	
+   819                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 61:             }
+   820                           
+   821                           
+   822                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 44:             while(PORTBbits.RB0 != 1)
+   823  0083  1283               	bcf	3,5	;RP0=0, select bank0
+   824  0084  1303               	bcf	3,6	;RP1=0, select bank0
+   825  0085  1C06               	btfss	6,0	;volatile
+   826  0086  2888               	goto	u6_21
+   827  0087  2889               	goto	u6_20
+   828  0088                     u6_21:
+   829  0088  285A               	goto	i1l40
+   830  0089                     u6_20:
+   831  0089                     i1l687:
+   832                           
+   833                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 63:             flag = 1;
+   834  0089  3001               	movlw	1
+   835  008A  00FA               	movwf	_flag
+   836  008B  3000               	movlw	0
+   837  008C  00FB               	movwf	_flag+1
+   838                           
+   839                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 64:         }
+   840  008D  28B7               	goto	i1l48
+   841  008E                     i1l46:
+   842                           
+   843                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 68:             {;../../Desktop/Micro-Github/Cancela/Sof
+      +                          tware/Exercicio_Cancela/Cancela_Passagem de nivel.X/Cancela_Passagem de nivel.c: 69:    
+      +                                       PORTCbits.RC0 = 1;
+   844  008E  1407               	bsf	7,0	;volatile
+   845  008F                     i1l689:
+   846                           
+   847                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 70:                 _delay((unsigned long)((500)*(400000
+      +                          0/4000.0)));
+   848  008F  3003               	movlw	3
+   849  0090  00F2               	movwf	??_TremChegando+2
+   850  0091  308A               	movlw	138
+   851  0092  00F1               	movwf	??_TremChegando+1
+   852  0093  3055               	movlw	85
+   853  0094  00F0               	movwf	??_TremChegando
+   854  0095                     u36_27:
+   855  0095  0BF0               	decfsz	??_TremChegando,f
+   856  0096  2895               	goto	u36_27
+   857  0097  0BF1               	decfsz	??_TremChegando+1,f
+   858  0098  2895               	goto	u36_27
+   859  0099  0BF2               	decfsz	??_TremChegando+2,f
+   860  009A  2895               	goto	u36_27
+   861  009B  289C               	nop2
+   862  009C                     i1l691:
+   863                           
+   864                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 71:                 PORTCbits.RC0 = 0;
+   865  009C  1283               	bcf	3,5	;RP0=0, select bank0
+   866  009D  1303               	bcf	3,6	;RP1=0, select bank0
+   867  009E  1007               	bcf	7,0	;volatile
+   868                           
+   869                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 72:                 _delay((unsigned long)((500)*(400000
+      +                          0/4000.0)));
+   870  009F  3003               	movlw	3
+   871  00A0  00F2               	movwf	??_TremChegando+2
+   872  00A1  308A               	movlw	138
+   873  00A2  00F1               	movwf	??_TremChegando+1
+   874  00A3  3055               	movlw	85
+   875  00A4  00F0               	movwf	??_TremChegando
+   876  00A5                     u37_27:
+   877  00A5  0BF0               	decfsz	??_TremChegando,f
+   878  00A6  28A5               	goto	u37_27
+   879  00A7  0BF1               	decfsz	??_TremChegando+1,f
+   880  00A8  28A5               	goto	u37_27
+   881  00A9  0BF2               	decfsz	??_TremChegando+2,f
+   882  00AA  28A5               	goto	u37_27
+   883  00AB  28AC               	nop2
+   884  00AC                     i1l693:
+   885                           
+   886                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 74:                 PORTDbits.RD3 = 0;
+   887  00AC  1283               	bcf	3,5	;RP0=0, select bank0
+   888  00AD  1303               	bcf	3,6	;RP1=0, select bank0
+   889  00AE  1188               	bcf	8,3	;volatile
+   890  00AF                     i1l695:
+   891                           
+   892                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 75:                 PORTDbits.RD1 = 0;
+   893  00AF  1088               	bcf	8,1	;volatile
+   894  00B0                     i1l697:
+   895                           
+   896                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 76:                 PORTCbits.RC4 = 0;
+   897  00B0  1207               	bcf	7,4	;volatile
+   898  00B1                     i1l699:
+   899                           
+   900                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 77:                 PORTCbits.RC6 = 0;
+   901  00B1  1307               	bcf	7,6	;volatile
+   902  00B2                     i1l701:
+   903                           
+   904                           ;../../Desktop/Micro-Github/Cancela/Software/Exercicio_Cancela/Cancela_Passagem de nivel
+      +                          .X/Cancela_Passagem de nivel.c: 67:             while(PORTBbits.RB0 != 1)
+   905  00B2  1C06               	btfss	6,0	;volatile
+   906  00B3  28B5               	goto	u7_21
+   907  00B4  28B6               	goto	u7_20
+   908  00B5                     u7_21:
+   909  00B5  288E               	goto	i1l46
+   910  00B6                     u7_20:
+   911  00B6  2889               	goto	i1l687
+   912  00B7                     i1l48:
+   913  00B7  0875               	movf	??_TremChegando+5,w
+   914  00B8  00FF               	movwf	btemp+1
+   915  00B9  0874               	movf	??_TremChegando+4,w
+   916  00BA  008A               	movwf	10
+   917  00BB  0E73               	swapf	??_TremChegando+3,w
+   918  00BC  0083               	movwf	3
+   919  00BD  0EFE               	swapf	btemp,f
+   920  00BE  0E7E               	swapf	btemp,w
+   921  00BF  0009               	retfie
+   922  00C0                     __end_of_TremChegando:
+   923  007E                     btemp	set	126	;btemp
+   924  007E                     wtemp0	set	126
+   925                           
+   926                           	psect	intentry
+   927  0004                     __pintentry:	
+   928                           ;incstack = 0
+   929                           ; Regs used in _TremChegando: [wreg+status,2+btemp+1]
+   930                           
+   931  0004                     interrupt_function:
+   932  007E                     saved_w	set	btemp
+   933  0004  00FE               	movwf	btemp
+   934  0005  0E03               	swapf	3,w
+   935  0006  00F3               	movwf	??_TremChegando+3
+   936  0007  080A               	movf	10,w
+   937  0008  00F4               	movwf	??_TremChegando+4
+   938  0009  087F               	movf	btemp+1,w
+   939  000A  00F5               	movwf	??_TremChegando+5
+   940  000B  120A  118A  2815   	ljmp	_TremChegando
+   941                           
+   942                           	psect	idloc
+   943                           
+   944                           ;Config register IDLOC0 @ 0x2000
+   945                           ;	unspecified, using default values
+   946  2000                     	org	8192
+   947  2000  3FFF               	dw	16383
+   948                           
+   949                           ;Config register IDLOC1 @ 0x2001
+   950                           ;	unspecified, using default values
+   951  2001                     	org	8193
+   952  2001  3FFF               	dw	16383
+   953                           
+   954                           ;Config register IDLOC2 @ 0x2002
+   955                           ;	unspecified, using default values
+   956  2002                     	org	8194
+   957  2002  3FFF               	dw	16383
+   958                           
+   959                           ;Config register IDLOC3 @ 0x2003
+   960                           ;	unspecified, using default values
+   961  2003                     	org	8195
+   962  2003  3FFF               	dw	16383
+   963                           
+   964                           	psect	config
+   965                           
+   966                           ;Config register CONFIG @ 0x2007
+   967                           ;	unspecified, using default values
+   968                           ;	Oscillator Selection bits
+   969                           ;	FOSC = 0x3, unprogrammed default
+   970                           ;	Watchdog Timer Enable bit
+   971                           ;	WDTE = 0x1, unprogrammed default
+   972                           ;	Power-up Timer Enable bit
+   973                           ;	PWRTE = 0x1, unprogrammed default
+   974                           ;	Brown-out Reset Enable bit
+   975                           ;	BOREN = 0x1, unprogrammed default
+   976                           ;	Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit
+   977                           ;	LVP = 0x1, unprogrammed default
+   978                           ;	Data EEPROM Memory Code Protection bit
+   979                           ;	CPD = 0x1, unprogrammed default
+   980                           ;	Flash Program Memory Write Enable bits
+   981                           ;	WRT = 0x3, unprogrammed default
+   982                           ;	In-Circuit Debugger Mode bit
+   983                           ;	DEBUG = 0x1, unprogrammed default
+   984                           ;	Flash Program Memory Code Protection bit
+   985                           ;	CP = 0x1, unprogrammed default
+   986  2007                     	org	8199
+   987  2007  3FFF               	dw	16383
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  4
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      8      12
+    BANK0            80      3       3
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _TremChegando in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _TremChegando in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _TremChegando in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _TremChegando in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _TremChegando in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 3     3      0       0
+                                              0 BANK0      3     3      0
+                     _desligaMotores
+ ---------------------------------------------------------------------------------
+ (1) _desligaMotores                                       0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (2) _TremChegando                                         8     8      0      30
+                                              0 COMMON     8     8      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _desligaMotores
+
+ _TremChegando (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      8       C       1       85.7%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+ABS                  0      0       F       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      3       3       5        3.8%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK3            60      0       0       8        0.0%
+BANK3               60      0       0       9        0.0%
+BITBANK2            60      0       0      10        0.0%
+BANK2               60      0       0      11        0.0%
+DATA                 0      0       F      12        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.36 build 20220127204148 
+Symbol Table                                                                                   Sat Jul 09 13:44:08 2022
+
+                     l51 0168                      l801 00E2                      l811 010B  
+                    l803 00E8                      l821 0124                      l813 0110  
+                    l805 00EC                      l831 013A                      l823 0125  
+                    l815 011F                      l807 00F0                      l833 013F  
+                    l817 0122                      l809 00F6                      l825 0129  
+                    l835 014D                      l827 0130                      l819 0123  
+                    l773 0162                      l829 0136                      l837 0151  
+                    l781 00C8                      l839 0158                      l791 00CF  
+                    l783 00C9                      l775 00C0                      l793 00D1  
+                    l785 00CA                      l777 00C4                      l795 00D3  
+                    l787 00CD                      l779 00C5                      l797 00D8  
+                    l789 00CE                      l799 00DC                      u200 00E8  
+                    u201 00E7                      u210 00F6                      u211 00F5  
+                    u220 00FD                      u221 00FB                      u230 0104  
+                    u222 00FE                      u231 0102                      u240 010B  
+                    u232 0105                      u241 010A                      u250 0130  
+                    u251 012F                      u307 0118                      u260 0136  
+                    u317 0147                      u261 0135                      u270 013A  
+                    u190 00E2                      u271 0139                      u191 00E1  
+                    u280 0158                      u281 0157                      u290 015E  
+                    u291 015D                      _aux 0078                     _INTF 0059  
+                   i1l40 005A                     i1l41 0081                     i1l37 0026  
+                   i1l46 008E                     i1l39 0083                     i1l48 00B7  
+                   u1_20 0019                     u1_21 0018                     u2_20 0020  
+                   u2_21 001F                     u3_20 0024                     u3_21 0023  
+                   u4_20 0059                     u4_21 0058                     u4_25 0055  
+                   u5_20 007E                     u5_21 007D                     u6_20 0089  
+                   u6_21 0088                     u7_20 00B6                     u7_21 00B5  
+                   _flag 007A                     _main 00C0                     btemp 007E  
+                   start 000E                    ?_main 0070                    i1l701 00B2  
+                  i1l661 0015                    i1l663 0019                    i1l681 0068  
+                  i1l673 0029                    i1l665 0020                    i1l691 009C  
+                  i1l683 0078                    i1l675 0036                    i1l667 0024  
+                  i1l693 00AC                    i1l685 007E                    i1l677 004C  
+                  i1l695 00AF                    i1l687 0089                    i1l679 005B  
+                  i1l697 00B0                    i1l689 008F                    i1l699 00B1  
+                  u32_27 002F                    u33_27 003F                    u34_27 0061  
+                  _PORTB 0006                    _PORTC 0007                    _PORTD 0008  
+                  u35_27 0071                    u36_27 0095                    u37_27 00A5  
+                  _TRISB 0086                    _TRISC 0087                    _TRISD 0088  
+                  pclath 000A                    status 0003                    wtemp0 007E  
+        __initialization 0011             __end_of_main 0162                   ??_main 0020  
+                 saved_w 007E  __end_of__initialization 0011           __pcstackCOMMON 0070  
+             __pnvCOMMON 0078               __pmaintext 00C0               __pintentry 0004  
+          ?_TremChegando 0070                  __ptext1 0162                  __ptext2 0015  
+   end_of_initialization 0011           ??_TremChegando 0070                _PORTBbits 0006  
+              _PORTCbits 0007                _PORTDbits 0008           _desligaMotores 0162  
+    start_initialization 0011   __end_of_desligaMotores 0169                ___latbits 0002  
+          __pcstackBANK0 0020     __end_of_TremChegando 00C0          ?_desligaMotores 0070  
+      interrupt_function 0004            TremChegando@i 0076             _TremChegando 0015  
+             _INTCONbits 000B                 intlevel1 0000         ??_desligaMotores 0020  
+             _OPTION_REG 0081  
